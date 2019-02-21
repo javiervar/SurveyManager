@@ -1,0 +1,129 @@
+{% extends 'base.html' %} {%block title%}Egresados{%endblock%} {%block content%}
+<div class="container" ng-controller="egresadoController">
+    <button class="btn btn-primary"  data-toggle="modal" data-target="#modalAgregarCarrera">Agregar Carrera</button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Carrera</th>
+                <th>Generacion</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for carrera in carreras %}
+            <tr>
+                <td>{{carrera.nombre}}</td>
+                <td>{{carrera.generacion}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary">Enviar encuesta</button>
+                    <button type="button" class="btn btn-success" ng-click="obtenerAlumnos({{carrera.id}})">Alumnos <i class="fas fa-users"></i></button>
+                    <button type="button" class="btn btn-success" ng-click="abrirModalAddAl({{carrera.id}})">Agregar Alumno</button>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <!-- Modal -->
+    <div id="modalAlumno" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Alumnos</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="alumno in alumnos">
+                                <td>{[{alumno.fields.nombre}]}</td>
+                                <td>{[{alumno.fields.apellidos}]}</td>
+                                <td>{[{alumno.fields.email}]}</td>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- Modal -->
+    <div id="modalAgregarAlumno" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar alumno</h4>
+                </div>
+                <form name="formularioAddAlumno" id="formularioAddAlumno" ng-submit="agregarAlumno()">
+                    <div class="modal-body">
+                        <input type="hidden" name="carrera" ng-model="carreraSelec">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" ng-model="formAddAlumno.nombre" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="apellidos">Apellidos:</label>
+                            <input type="text" class="form-control" ng-model="formAddAlumno.apellidos" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" ng-model="formAddAlumno.email" required="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="modalAgregarCarrera" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Agregar carrera</h4>
+                </div>
+                <form name="formularioAddCarrera" id="formularioAddCarrera" ng-submit="agregarCarrera()">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" ng-model="formCarrera.nombre" required="">
+                        </div>
+                        <div class="form-group">
+                            <label for="generacion">Generacion:</label>
+                            <select class="form-control" id="sel1" required="" ng-model="formCarrera.generacion">
+                                {%for gen in generaciones%}
+                                <option value="{{gen.id}}">{{gen}}</option>
+                                {%endfor%}}
+                               
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

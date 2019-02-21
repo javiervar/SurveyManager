@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {%block title%}Encuesta{%endblock%} {%block content%}
+<div class="container" ng-controller="viewerController">
+    <div class="contenido panel panel-success" ng-init='init({{encuesta.id}})'>
+        <div class="panel-heading">
+            <h2>{[{survey.name}]}</h2>
+            <spam>{[{survey.description}]}</spam>
+        </div>
+        <div class="panel-body">
+            <div class="row" style="padding:20px">
+                <label>Pagina {[{currentPage+1}]} de {[{survey.pages.length}]}</label>
+                </ul>
+            </div>
+            <form class="" style="padding: 20px">
+                <div ng-repeat="question in survey.pages[currentPage].questions track by $index" style="margin-bottom: 30px;margin-top: 10px">
+                    <h4>{[{question.question}]}.- {[{question.description}]}</h4>
+                    <div ng-if="question.type==1">
+                        <div ng-repeat="option in question.option">
+                            <input type="radio" class="form-check-input" name="{[{question.question}]}" value="{[{option.value}]}" style="margin-right: 15px" disabled="" ng-if="!question.multiselect">
+
+                            <input type="checkbox" class="form-check-input" name="{[{question.question}]}" value="{[{option.value}]}" style="margin-right: 15px" disabled="" ng-if="question.multiselect">
+                            <label>{[{option.value}]}</label>
+                        </div>
+                    </div>
+                    <div ng-if="question.type==2">
+                        <textarea class="form-control" disabled="">
+                        </textarea>
+                    </div>
+                    <div ng-if="question.type==3">
+                        <div class="slidecontainer">
+                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        </div>
+                    </div>
+                    <div ng-if="question.type==4">
+                        <div ng-repeat="option in question.option">
+                            <input type="radio" class="form-check-input" name="{[{question.question}]}" value="{[{option.value}]}" style="margin-right: 15px" disabled="">
+                            <label>{[{option.value}]}</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row" style="padding: 20px;">
+                <button type="button" class="btn btn-default" ng-click="atras()" ng-if="currentPage>0" style="float:left;">ATRAS</button>
+                <button type="button" class="btn btn-default" ng-click="siguiente()" ng-if="(survey.pages.length-1)>currentPage" style="float:right;">SIGUIENTE</button>
+                <!--  
+                <button type="button" class="btn btn-default" ng-click="siguiente()" ng-if="(survey.pages.length-1)==currentPage" style="float:right;">FINALIZAR</button>-->
+            </div>
+        </div>
+    </div>
+    
+</div>
+{%endblock%}

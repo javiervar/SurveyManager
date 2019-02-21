@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {%block title%}Respuestas{%endblock%} {%block content%}
+<div class="container" ng-controller="answersController">
+    <div class="contenido panel panel-success" ng-init='init({{encuesta.id}})' style="width: 80%">
+        <div class="panel-heading">
+            <h2>{{encuesta.nombre}}</h2>
+            <spam>{{encuesta.descripcion}}</spam>
+        </div>
+        <div class="panel-body">
+            <form class="" style="padding: 20px">
+                <div ng-repeat="answer in answers track by $index" style="margin-bottom: 30px;margin-top: 10px">
+                    <h3 class="row">{[{answer.numero_pregunta}]}.- {[{answer.pregunta}]}</h3>
+                    <div class="row" style="margin-top: 20px">
+                        <div ng-if="answer.tipo==1" style="margin-left: 45px;" class="col-xs-6">
+                            <div ng-repeat="opcion in answer.respuestas">
+                                <span style="font-size: 16px">
+                                {[{opcion.respuesta}]}  
+                                <b>{[{opcion.numero}]}</b>  
+                                <b class="text-success">{[{(opcion.numero*100/answer.total)}]}%</b>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="col-xs-5">
+
+                            <select class="form-control" ng-model="answer.chart" style="margin-bottom: 15px">
+                                <option value="pie">Pie</option>
+                                <option value="polarArea">Polar Area</option>
+                                <option value="radar">Radar</option>
+                                <option value="doughnut">Doughnut</option>
+                                <option value="bar">Bar</option>
+                            </select>
+                            <canvas id="doughnut" class="chart-base" chart-type="answer.chart" chart-data="answer.data" chart-labels="answer.labels">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}

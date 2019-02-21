@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {%block title%}Encuestas{%endblock%} {%block content%}
+<div class="container" ng-controller="surveysController">
+    <!-- Search input -->
+    <div class="row search">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" placeholder="Buscar encuesta" ng-model="buscar">
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>  
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Encuestas -->
+    <div class="row" ng-cloak>
+        <div class="col-xs-4" ng-repeat="encuesta in surveys | filter: buscar">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="{{baseUrl}}/img/survey.png" width="40px">   {[{encuesta.fields.nombre}]}
+                </div>
+                    <div class="panel-body">
+                        <div style="margin-bottom: 50px;">{[{encuesta.fields.descripcion}]}</div>
+                        <div style="margin-bottom: 20px;text-align: center;">
+                            <a href="encuesta/{[{encuesta.pk}]}" class="btn btn-info" >Vista previa</a>
+                            <a href="respuestas/{[{encuesta.pk}]}" class="btn btn-info" >Respuestas</a>
+                            <button class="btn btn-primary" ng-click="modalEnviar(encuesta.pk)">Enviar</button>
+                            <button class="btn btn-danger" ng-click="deleteSurvey(encuesta.pk)">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div id="modalEnviar" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Enviar</h4>
+                    </div>
+                    <form ng-submit="enviar()">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="generacion">Carrera:</label>
+                                <select class="form-control" ng-init="formEnviar.carrera==''" required="" ng-model="formEnviar.carrera">
+                                    <option value="">Selecciona una carrera...</option>
+                                    {%for carrera in carreras%}
+                                    <option value="{{carrera.id}}">{{carrera}}</option>
+                                    {%endfor%}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary" >Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endblock%}

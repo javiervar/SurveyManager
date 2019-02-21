@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {%block title%}Responder{%endblock%} {%block content%}
+<div class="container" ng-controller="viewerController">
+    
+    <div class="contenido panel panel-success" ng-init='init({{encuesta.id}})'>
+        <div class="panel-heading">
+            <h2>{[{survey.name}]}</h2>
+            <spam>{[{survey.description}]}</spam>
+            <span style="float: right;">{{alumno.nombre}} {{alumno.apellidos}}</span>
+        </div>
+        <div class="panel-body">
+            <div class="row" style="padding:20px">
+                <label>Pagina {[{currentPage+1}]} de {[{survey.pages.length}]}</label>
+                </ul>
+            </div>
+            <form class="" style="padding: 20px" id="formulario">
+                {%for question in preguntas%}
+                <div style="margin-bottom: 30px;margin-top: 10px">
+                    <h4>{{question.numero}}.- {{question.descripcion}}</h4>
+                    <div ng-if="question.type==1">
+
+                        <div >
+                            <input type="radio" class="form-check-input" name="{[{question.id}]}" value="{[{option.value}]}" style="margin-right: 15px" required="" ng-if="!question.multiselect">
+                            <input type="checkbox" class="form-check-input" name="{[{question.question}]}" value="{[{option.value}]}" style="margin-right: 15px" required="" ng-if="question.multiselect">
+                            <label>{[{option.value}]}</label>
+                        </div>
+                    </div>
+                 
+                    <div ng-if="question.type==4">
+                        <div ng-repeat="option in question.option">
+                            <input type="radio" class="form-check-input" ng-model="" name="{[{question.id}]}" value="{[{option.value}]}" style="margin-right: 15px" required="">
+                            <label>{[{option.value}]}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding: 20px;">
+                    <button type="button" class="btn btn-default" ng-click="atras()" ng-if="currentPage>0" style="float:left;">ATRAS</button>
+                    <button type="button" class="btn btn-default" ng-click="siguiente()" ng-if="(survey.pages.length-1)>currentPage" style="float:right;">SIGUIENTE</button>
+                    <button type="submit" class="btn btn-default" ng-click="finalizar()" ng-if="(survey.pages.length-1)==currentPage" style="float:right;">FINALIZAR</button>
+                </div>
+                {%endfor%}
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}

@@ -1,0 +1,8 @@
+Para probar hay que poner un correo gmail de envio en el archivo settings junto con la respectiva contrasena,
+y hay que configurar la seguridad y dehabilitar el capcha de inicio de sesion
+
+ademas hay que cambiar la direccion del email.html de la carpeta Template
+
+
+o se puede checar en 
+http://52.15.139.26:8000/

@@ -1,0 +1,189 @@
+body {
+  background: #e2e1e0; }
+
+.contenido {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 50px; 
+
+}
+.conteiner{
+  margin-top:20px;
+  padding-bottom: 5px;
+}
+.encabezado {
+  padding: 10px;
+  background: #fff; }
+
+.paginas {
+  margin-top: 5px;
+  padding: 3px;
+  background: #fff; }
+.paginas ul{
+  margin: 0px !important;
+}
+
+
+
+.handle {
+  width: 100%;
+  text-align: center;
+  cursor: move; }
+
+li {
+  text-decoration: none;
+ }
+
+input, select {
+  border-radius: 0 !important; }
+
+.pregunta {
+  margin-top: 2px;
+  background: #fff; }
+
+.pregunta .inside {
+  padding: 15px;
+  margin: 5px;
+}
+
+.inside .row{
+  margin-bottom: 15px;
+}
+
+.pregunta:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+
+.boton {
+  margin-top: 10px;
+  text-align: center; 
+}
+
+
+
+.plusBtn {
+  background-color: #2196F3;
+  font-size: 20px;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  border: 0px; }
+
+.plusBtn:hover {
+  text-decoration: none;
+  color: #fff; }
+
+.text {
+  color: #333; }
+
+.tools{
+  padding: 10px;
+  margin:5px; 
+  border-bottom: 1px solid #eee; 
+}
+
+.tools button{
+  background: transparent;
+  border: 0;
+}
+.tools .multiselect{
+  display: inline;  
+}
+.tools .toolBtn{
+  display: inline;
+  width: 80px;
+  border-right: 1px solid #ddd;
+  margin-right: 10px;
+}
+
+/*OPCIONES DE PREGUNTAS*/
+.questionType li{
+  padding: 10px;
+  color: #333;
+  cursor: pointer;
+}
+
+.questionType li:hover{
+  background: #337ab7;
+  color: #fff;
+}
+
+.questionPanel{
+  width: 20%;
+  position: fixed;
+}
+
+/*PAGES*/
+
+.active{
+  background: #333;
+  color:#fff;
+}
+
+
+/*SEARCH INPUT*/
+.search{
+  margin-bottom: 40px;
+
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+  border-right:0; 
+  box-shadow:0 0 0; 
+  border-color:#ccc;
+  height: 60px;
+  font-size: 25px;
+  
+}
+.stylish-input-group button{
+    border:0;
+    font-size: 25px;
+    background:transparent;
+}
+
+/*Slider*/
+
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.deactive{
+  
+}
